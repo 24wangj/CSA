@@ -14,6 +14,7 @@ public class PiEstimate {
 				in++;
 			}
 		}
+		
 		pi = 4 * (in / MAX);
 		System.out.println(pi);
 	}
