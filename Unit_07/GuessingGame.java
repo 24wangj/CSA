@@ -5,10 +5,13 @@ public class GuessingGame {
 
 	public static void main(String[] args) {
 		
-		Scanner keyboard = new Scanner(System.in);
-		final int RANDOM = (int)(Math.random() * 1000);
+		final int MAX = 1000;
+		final int RANDOM = (int)(Math.random() * MAX);
 		
-		System.out.println("Guess a number:");
+		@SuppressWarnings("resource")
+		Scanner keyboard = new Scanner(System.in);
+		
+		System.out.println("Guess a number between 0 and " + MAX + ":");
 		
 		for (int i = 10; i >= 0; i--) {
 			int guess = keyboard.nextInt();
