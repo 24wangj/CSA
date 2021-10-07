@@ -24,5 +24,6 @@ public class GuessingGame {
 			    i = 0;
 			}
 		}
+		System.out.println("The correct number was " + RANDOM + "!");
 	}
 }
