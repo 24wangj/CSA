@@ -11,9 +11,8 @@ public class FactorGeneratorRunner {
 		FactorGenerator ethernet = new FactorGenerator();
 		
 		System.out.println("Enter value:");
-		int vincentestápoggers = keyboard.nextInt();
 		
-		ethernet.displayAllFactors(vincentestápoggers);
+		ethernet.displayAllFactors(keyboard.nextInt());
 		
 	}
 }
