@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class MasterMind {
 	
-	final static String RAND = String.valueOf((int)(Math.random() * 899 + 100));
+	final static String RAND = String.valueOf((int) (Math.random() * 899 + 100));
 	
 	//correct position
 	public static boolean is1Correct(String num) {
