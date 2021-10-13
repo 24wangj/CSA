@@ -39,7 +39,7 @@ public class Checkerboard extends Turtle {
 		mousepad.move(90, 160);
 		mousepad.move(-90, 20);
 		
-		mousepad.switchTo(Turtle.GRAY);
+		mousepad.switchTo(Turtle.RED);
 		
 		for (int i = 1; i < 9; i++) {
 			mousepad.paintRow(i);
