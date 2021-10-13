@@ -1,5 +1,4 @@
 
-//why did i do it like this
 import java.util.Scanner;
 
 public class MasterMind {
