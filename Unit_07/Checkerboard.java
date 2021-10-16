@@ -1,24 +1,18 @@
 
 public class Checkerboard extends Turtle {
-
+	
 	public void paintRow(int offset) {
-		if (offset % 2 == 0) {
-			for (int j = 0; j < 4; j++) {
-				fillBox(20, 20);
-				move(0, 40);
-			}
-			move(180, 140);
-			move(90, 20);
-			move(90, 0);
-		} else {
-			for (int j = 0; j < 4; j++) {
-				fillBox(20, 20);
-				move(0, 40);
-			}
-			move(180, 180);
-			move(90, 20);
-			move(90, 0);
+		for (int j = 0; j < 4; j++) {
+			fillBox(20, 20);
+			move(0, 40);
 		}
+		if (offset % 2 == 0) {
+			move(180, 140);
+		} else {
+			move(180, 180);
+		}
+		move(90, 20);
+		move(90, 0);
 	}
 	
 	public static void main(String[] args) {
