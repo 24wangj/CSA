@@ -1,6 +1,20 @@
 
+import java.util.Random;
+
 public class Arrays {
 
+	public static int[] getArrayOfRandomNums(int size) {
+
+		Random randy = new Random();
+
+		int[] theArray = new int[size];
+
+		for(int x=0; x<size; x++) {
+			theArray[x] = randy.nextInt(100);
+		}
+		return theArray;
+	}
+	
 	public static int calculateSum(int[] arr) {
 		
 		int sum = 0;
@@ -10,9 +24,9 @@ public class Arrays {
 		return sum;
 	}
 	
-	public static int getProduct(int[] arr) {
+	public static long getProduct(int[] arr) {
 		
-		int product = 1;
+		long product = 1;
 		for (int i = 0; i < arr.length; i++) {
 			product *= arr[i];
 		}
@@ -38,16 +52,16 @@ public class Arrays {
 	}
 	
 	public static void main(String[] args) {
+
+		int[] randomArray = getArrayOfRandomNums(8);
 		
-		int[] array = {6, 1, 3, 5, 4, 2};
+		System.out.println("Sum of array: " + calculateSum(randomArray));
+		System.out.println("Product of array: " + getProduct(randomArray));
+		System.out.println("Average: " + average(randomArray));
 		
-		System.out.println("Sum of array: " + calculateSum(array));
-		System.out.println("Product of array: " + getProduct(array));
-		System.out.println("Average: " + average(array));
+		sortAscending(randomArray);
 		
-		sortAscending(array);
-		
-		for (int i : array) {
+		for (int i : randomArray) {
 			System.out.println(i);
 		}
 	}
