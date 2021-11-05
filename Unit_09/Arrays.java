@@ -34,7 +34,7 @@ public class Arrays {
 
 	public static double average(int[] arr) {
 
-		return calculateSum(arr) / arr.length;
+		return (double) calculateSum(arr) / arr.length;
 	}
 
 	public static int getIndexOfMin(int[] arr, int startLoc) {
@@ -57,7 +57,7 @@ public class Arrays {
 	
 	public static void main(String[] args) {
 
-		int[] randomArray = getArrayOfRandomNums(6);
+		int[] randomArray = getArrayOfRandomNums(5);
 
 		System.out.println("Sum of array: " + calculateSum(randomArray));
 		System.out.println("Product of array: " + getProduct(randomArray));
