@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Lists {
 
-	public static ArrayList<String> getNames() {
+	public ArrayList<String> getNames() {
 		
 		Scanner keyboard = new Scanner(System.in);
 		ArrayList<String> names = new ArrayList<String>();
@@ -23,12 +23,7 @@ public class Lists {
 		return names;
 	}
 	
-	public static void main(String[] args) {
+	public void sortList(ArrayList<String> theList) {
 		
-		ArrayList<String> names = getNames();
-		
-		for (String i : names) {
-			System.out.println(i);
-		}
 	}
 }
