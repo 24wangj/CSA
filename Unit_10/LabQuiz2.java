@@ -6,7 +6,7 @@ public class LabQuiz2 {
 	//method returns true if num is prime, false if not
 	public static boolean isPrime(int num) {
 		
-		for (int i = 2; i < num / 2; i++) {
+		for (int i = 2; i <= num / 2; i++) {
 			if (num % i == 0) {
 				return false;
 			}
