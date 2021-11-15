@@ -1,7 +1,5 @@
-
 import java.util.ArrayList;
 import java.util.Scanner;
-
 
 public class Lists {
 
@@ -23,7 +21,42 @@ public class Lists {
 		return names;
 	}
 	
-	public void sortList(ArrayList<String> theList) {
+	public void displayList(ArrayList<String> arr) {
 		
+		for (String i : arr) {
+			System.out.println(i);
+		}
 	}
-}
+	
+	public int getIndexOfFirst(ArrayList<String> arr, int startLoc) {
+		int indexOfFirst = startLoc;
+		for (int i = startLoc; i < arr.size(); i++) {
+			if (arr.get(i).compareTo(arr.get(indexOfFirst)) < 0) {
+				indexOfFirst = i;
+			}
+		}
+		return indexOfFirst;
+	}
+	
+	public void sortList(ArrayList<String> arr) {
+		
+		for (int i = 0; i < arr.size(); i++) {
+			String temp = arr.get(getIndexOfFirst(arr, i));
+			arr.set(getIndexOfFirst(arr, i), arr.get(i));
+			arr.set(i, temp);
+		}
+	}
+	
+	public void addNameToList(ArrayList<String> arr, String newName) {
+		
+		arr.add(newName);
+		sortList(arr);
+	}
+	
+	public void removeFromList(ArrayList<String> arr, String remove) {
+		
+		while (arr.contains(remove)) {
+			arr.remove(remove);	
+		}
+	}
+} 
