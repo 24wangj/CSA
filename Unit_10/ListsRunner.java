@@ -8,10 +8,16 @@ public class ListsRunner {
 		Lists obj = new Lists();
 		ArrayList<String> names = obj.getNames();
 		
+		//sorts
 		obj.sortList(names);
+		obj.displayList(names);
 		
-		for (String i : names) {
-			System.out.println(i);
-		}
+		//adds string
+		obj.addNameToList(names, "joe");
+		obj.displayList(names);
+		
+		//removes strings
+		obj.removeFromList(names, "joe");
+		obj.displayList(names);
 	}
 }
