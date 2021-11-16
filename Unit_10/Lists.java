@@ -24,9 +24,13 @@ public class Lists {
 	
 	public void displayList(ArrayList<String> arr) {
 		
-		for (String i : arr) {
-			System.out.println(i);
+		for (int i = 1; i < arr.size(); i++) {
+			System.out.print(arr.get(i));
+			if (i < arr.size() - 1) {
+				System.out.print(", ");
+			}
 		}
+		System.out.println("");
 	}
 	
 	public int getIndexOfFirst(ArrayList<String> arr, int startLoc) {
