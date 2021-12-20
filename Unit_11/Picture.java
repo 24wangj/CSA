@@ -1,3 +1,4 @@
+
 import java.awt.*;
 import java.awt.font.*;
 import java.awt.geom.*;
@@ -136,6 +137,8 @@ public class Picture extends SimplePicture {
 		for (Pixel[] rowArray : pixels) {
 			for (Pixel pixelObj : rowArray) {
 				pixelObj.setRed(pixelObj.getRed() * 4);
+				pixelObj.setGreen(pixelObj.getGreen() - 20);
+				pixelObj.setBlue(pixelObj.getBlue() - 20);
 			}
 		}
 	}
@@ -212,7 +215,7 @@ public class Picture extends SimplePicture {
 			for (int col = 0; col < row; col++) {
 				topRight = pixels[row][col];
 				botLeft = pixels[col][row];
-				botLeft.setColor(topRight.getColor());
+				topRight.setColor(botLeft.getColor());
 			}
 		}
 	}
@@ -300,13 +303,15 @@ public class Picture extends SimplePicture {
 		}
 	}
 
-	public void copy(Picture fromPic, int startRow, int startCol, int endRow, int endCol) {
+	public void copy(Picture fromPic, int startRow, int startCol, int endRow, int endCol, int toRow, int toCol) {
 		Pixel fromPixel = null;
 		Pixel toPixel = null;
 		Pixel[][] toPixels = this.getPixels2D();
 		Pixel[][] fromPixels = fromPic.getPixels2D();
-		for (int fromRow = 0, toRow = startRow; fromRow < endRow && toRow < endRow; fromRow++, toRow++) {
-			for (int fromCol = 0, toCol = startCol; fromCol < endCol && toCol < endCol; fromCol++, toCol++) {
+		int tempCol = toCol;
+		for (int fromRow = startRow; fromRow < endRow && fromRow < fromPixels.length && toRow < toPixels.length; fromRow++, toRow++) {
+			toCol = tempCol;
+			for (int fromCol = startCol; fromCol < endCol && fromCol < fromPixels[0].length && toCol < toPixels[0].length; fromCol++, toCol++) {
 				fromPixel = fromPixels[fromRow][fromCol];
 				toPixel = toPixels[toRow][toCol];
 				toPixel.setColor(fromPixel.getColor());
@@ -330,16 +335,21 @@ public class Picture extends SimplePicture {
 		this.write("collage.jpg");
 	}
 
-	public void myCollage(Picture pic1, Picture pic2, Picture pic3) {
+	public void myCollage(Picture pic1, Picture pic2, Picture pic3, Picture pic4) {
 		Picture picture1 = pic1;
 		Picture picture2 = pic2;
 		Picture picture3 = pic3;
-		pic1.zeroBlue();
-		pic2.mirrorDiagonal();
+		Picture picture4 = pic4;
+		
+		pic1.mirrorDiagonal();
+		pic2.mirrorHorizontalBotToTop();
 		pic3.fixUnderwater();
-		this.copy(picture1, 0, 0, 200, 300);
-		this.copy(pic2, 200, 0, 480, 640);
-		this.copy(pic3, 0, 300, 300, 640);
+		pic4.grayscale();
+		
+		this.copy(picture1, 100, 100, 340, 420, 0, 0);
+		this.copy(picture2, 200, 250, 440, 570, 0, 320);
+		this.copy(picture3, 100, 200, 340, 520, 240, 0);
+		this.copy(picture4, 0, 0, 240, 320, 240, 320);
 	}
 
 	/**
@@ -389,30 +399,7 @@ public class Picture extends SimplePicture {
 
 	public void edgeDetection2(int tolerance) {
 		
-		Picture swan = new Picture(this);
-		
-		Pixel[][] pixels = this.getPixels2D();
-		Pixel[][] pixels2 = swan.getPixels2D();
-		
-		grayscale();
-		
-		for (int row = 0; row < pixels.length - 1; row++) {
-			for (int col = 0; col < pixels[0].length - 1; col++) {
-				if (Math.abs(pixels[row][col].getRed() - pixels[row + 1][col + 1].getRed()) > tolerance) {
-					pixels[row][col].setColor(Color.BLACK);
-				} else {
-					pixels[row][col].setColor(Color.WHITE);
-				}
-			}
-		}
-		
-		for (int row = 0; row < pixels2.length - 1; row++) {
-			for (int col = pixels2[0].length - 1; col >= 2; col--) {
-				if (Math.abs(pixels2[row][col].getRed() - pixels2[row + 1][col - 1].getRed()) > tolerance) {
-					pixels[row][col].setColor(Color.BLACK);
-				}
-			}
-		}
+		this.edgeDetection(10);
 	}
 	
 	/*
